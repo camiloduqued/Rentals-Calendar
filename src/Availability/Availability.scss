@@ -1,0 +1,62 @@
+$border-dark:  #C4C4C4;
+
+@mixin containers {
+    border: 1px solid $border-dark;
+    border-radius: 1.2rem;
+}
+
+.day-selected{
+    background: rgba(24, 137, 255, 0.2);
+    border: 0.69413px solid #1889FF;
+    box-shadow: 0px 0px 2.77652px #1889FF;
+    .fc-daygrid-day-top{
+        .fc-daygrid-day-number{
+            color: #1889FF;
+        }
+    }
+
+}
+.availability-cmp{
+    .availability-cmp_warapper{
+        display: flex;
+        justify-content: space-between;
+        .availability-cmp_calendar-col{
+            width: 52%;
+            @include containers;
+            .availability-cmp_type-wrapper{
+                padding: 1.5rem 1.5rem 0;
+                label{
+                    display: block;
+                }
+            }
+            .availability-cmp_calendar_wrapper{
+                padding: 1.5rem;
+                .availability-cmp_timerange-wrapper{
+                    .availability-cmp_timerange-cont{
+                        margin-top: 20px;
+                    }
+                }
+            }
+        }
+        .availability-cmp_packages-col{
+            @include containers;
+            width: 45%;
+            ul{
+                padding: .65rem;
+            }
+        }
+    }
+    .fc{
+        .fc-daygrid-day-top{
+            flex-direction: initial !important;
+            justify-content: center;
+            .fc-daygrid-day-number{
+                padding: 5px;
+                background-color: white;
+                border-radius: 2px;
+                line-height: 1;
+                margin-top: 5px;
+            }
+        }
+    }
+}
