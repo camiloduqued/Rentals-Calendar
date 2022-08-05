@@ -1,0 +1,26 @@
+
+@import "../index.scss";
+
+.registration-cmp{
+    .registration-cmp_wrapper{
+        @include grid_wrapper; 
+        .registration-cmp_event-col{
+            @include grid-col_left;
+            width: 40%;
+            .rental-image{
+                height: 120px;
+                width: 100%;
+                img{
+                    object-fit: cover;
+                    height: 100%;
+                    width: 100%;
+                    border-radius: .65rem;
+                }
+            }
+        }
+        .registration-cmp_registration-col{
+            @include grid-col_right;
+            width: 50%;
+        }
+    }
+}

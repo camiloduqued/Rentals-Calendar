@@ -1,0 +1,30 @@
+.package-item_wrapper{
+    border: 1px solid #dddbda;
+    border-radius: 0.85rem;
+    margin: 10px auto;
+    font-size: 14px;
+    padding: 1rem;
+    .package-item_header{
+        display: flex;
+        flex-wrap: wrap;
+        flex-flow: wrap;
+        .package-item_header-title{
+            margin-right: 20px;
+            &:last-child{
+                margin-right: 0;
+            }
+            span{
+                font-weight: 600;
+            }
+        }
+    }
+    .package-item_description{
+        p{
+            font-size: 12px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical; 
+        }
+    }
+}
