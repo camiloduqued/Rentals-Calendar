@@ -1,0 +1,45 @@
+.steps-header{
+    margin: 50px auto 100px;
+    width: 60%;
+    max-width: 100%;
+    text-align: center;
+    ul{
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        li:not(.progress-indicator){
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+            z-index: 2;
+            max-width: 80px;
+            .circle{
+                content: "";
+                margin: 0 auto 10px;
+                display: block;
+                width: 28px;
+                height: 28px;
+                border-radius: 50%;
+                border: 6px solid #1889FF;
+                background-color: #fff;
+                box-sizing: border-box;
+            }
+            .label{
+                position: absolute;
+                top: 40px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+        .progress-indicator{
+            position: absolute;
+            z-index: 1;
+            height: 4px;
+            width: calc(100%);
+            background-color: #DDDBDA;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+}

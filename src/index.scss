@@ -1,3 +1,5 @@
+@import 'antd/dist/antd.css';
+
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
@@ -8,6 +10,17 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+h1,h2, h3, h4, h5, h6{
+  font-style: normal;
+}
+h2{
+  font-size: 20px;
+}
+h3{
+  font-size: 16px;
+  color: #707070;
 }
 
 $border-dark:  #C4C4C4;
@@ -27,4 +40,37 @@ $border-dark:  #C4C4C4;
 @mixin grid-col_right{
     @include containers;
     padding: 1.5rem;
+}
+
+
+@mixin form-grid{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  .form-grid_col{
+      margin-bottom: 20px;
+      label{
+          display: block;
+      }
+      input{
+          display: block;
+          width: 100%;
+          height: 40px;
+          background: #FFFFFF;
+          border: 1px solid #C4C4C4;
+          border-radius: 5px;
+          font-family: 'Poppins', sans-serif;
+          &[type=submit]{
+            background: #1889FF;
+            color: #FFFFFF;
+            border: 0 !important;
+          }
+      }
+      &-50{
+          width: 48%;
+      }
+      &-100{
+          width: 100%;
+      }
+  }
 }

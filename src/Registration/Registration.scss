@@ -17,10 +17,21 @@
                     border-radius: .65rem;
                 }
             }
+            .rental-description-disclaimers{
+                h3{
+                    margin: 30px 0 15px;
+                }
+                p{
+                    font-size: 14px;
+                } 
+            }
         }
         .registration-cmp_registration-col{
             @include grid-col_right;
             width: 50%;
+            .form-grid{
+                @include form-grid;
+            }
         }
     }
 }
