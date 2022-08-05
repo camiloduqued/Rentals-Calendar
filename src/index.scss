@@ -1,0 +1,30 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+$border-dark:  #C4C4C4;
+
+@mixin containers {
+    border: 1px solid $border-dark;
+    border-radius: 1.2rem;
+}
+@mixin grid_wrapper{
+  display: flex;
+  justify-content: space-between;
+}
+@mixin grid-col_left{
+    @include containers;
+    padding: 1.5rem;
+}
+@mixin grid-col_right{
+    @include containers;
+    padding: 1.5rem;
+}

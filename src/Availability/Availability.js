@@ -29,7 +29,7 @@ function Availability() {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
     <div className="availability-cmp">
-        <section className='availability-cmp_warapper'>
+        <section className='availability-cmp_wrapper'>
             <article className='availability-cmp_calendar-col'>
               <div className="availability-cmp_type-wrapper">
                 <label htmlFor="categorySelector">1. Select a category according to your category</label>
