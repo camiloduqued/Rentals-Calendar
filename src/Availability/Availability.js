@@ -5,10 +5,10 @@ import interactionPlugin from '@fullcalendar/interaction';
 import './Availability.scss';
 import {PackagesContext} from "../Contexts/PackagesContext";
 import PackageItem from "./components/PackageItem";
-import moment from 'moment';
 import {TimePicker} from "antd";
 import {motion} from "framer-motion"
 import { SummaryContext } from "../Contexts/SummaryContext";
+import Service from '../service.lib'
 
 const container = {
   hidden: { opacity: 0 },
@@ -27,8 +27,14 @@ const item = {
 }
 
 function Availability() {
-  const {packages} = useContext(PackagesContext);
+  const {packages, setPackages} = useContext(PackagesContext);
   const {summary, setSummary} = useContext(SummaryContext);
+
+  const [startTime, setStartTime] = useState();
+  const [endTime, setEndTime] = useState();
+  const [numberOfGuests, setNumberOfGuests] = useState();
+  const [category, setCategory] = useState();
+  const [rentalDate, setRentalDate] = useState();
 
   const handleDateClick = (elem) =>{
     let calendarCells = document.getElementsByClassName("fc-daygrid-day");
@@ -36,11 +42,28 @@ function Availability() {
       cell.classList.remove("day-selected")
     }
     elem.dayEl.classList.add("day-selected")
+    setRentalDate(elem.date);
     summary.date = elem.date;
     summary.dateString = elem.dateStr;
     console.log("elem >>> ", elem);
     setSummary(summary);
   }
+
+  useEffect(() => {
+    const fetchTemplates = async () => {
+      if (numberOfGuests != null && numberOfGuests.trim() !== "" && 
+          category != null && category.trim() !== "" &&
+          rentalDate != null && 
+          startTime != null && 
+          endTime != null) 
+      {
+        const service = new Service();
+        const packages = await service.getRentals(parseInt(numberOfGuests), category, rentalDate.getTime(), startTime, endTime);
+        setPackages(packages)
+      }
+    }
+    fetchTemplates()
+  }, [numberOfGuests, category, rentalDate, startTime, endTime])
 
   const handleSelectTime = (momentObj) =>{
     summary.timeRange = momentObj;
@@ -60,15 +83,17 @@ function Availability() {
       foundCell.classList.add("day-selected")
     }
   },[])
+
   return (
     <div className="availability-cmp">
         <section className='availability-cmp_wrapper'>
             <article className='availability-cmp_calendar-col'>
               <div className="availability-cmp_type-wrapper">
                 <label className="step-title" htmlFor="categorySelector">1. Select a category according to your category</label>
-                <select id="categorySelector">
-                  <option value="Weddings">Weddings</option>
-                  <option value="Birhdays">Birhdays</option>
+                <select id="categorySelector" onChange={(event) => setCategory(event.target.value)}>
+                  <option defaultChecked value=""> Select a category </option>
+                  <option value="Birthday Party">Birthday Party</option>
+                  <option value="Weddings">Wedding</option>
                   <option value="Reception Only">Reception Only</option>
                 </select>
               </div>
@@ -96,7 +121,7 @@ function Availability() {
 
                 <div className="availability-cmp_guests-wrapper">
                   <div className="step-title">4. Number of guests</div>
-                  <input className="guests-input"/>
+                  <input className="guests-input" type="number" onChange={(event) => setNumberOfGuests(event.target.value)}/>
                 </div>
               </div>
             </article>
