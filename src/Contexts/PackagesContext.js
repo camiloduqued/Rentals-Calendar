@@ -7,7 +7,7 @@ export const PackagesContext = createContext()
 
 const PackagesProvider = (props) => {
     
-    const useMockData = true;
+    const useMockData = false;
 
     const [packages, setPackages] = useState(useMockData ? [
         {
