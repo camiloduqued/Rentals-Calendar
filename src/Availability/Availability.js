@@ -39,6 +39,7 @@ function Availability() {
 
   const handleDateClick = (elem) =>{
     let calendarCells = document.getElementsByClassName("fc-daygrid-day");
+    if(elem.dayEl.classList.contains("fc-day-past")) return;
     for(let cell of calendarCells){ 
       cell.classList.remove("day-selected")
     }
@@ -118,23 +119,25 @@ function Availability() {
                   dateClick={handleDateClick}
                   headerToolbar={{start: 'title', center: '', right: 'prev,next'}}
                 />
-                <div className="availability-cmp_timerange-wrapper">
-                <div className="availability-cmp_timerange-cont">
-                    <div className="step-title">3. Select the time frame for your activity</div>
-                    <TimePicker.RangePicker 
-                      use12Hours 
-                      onChange={(time) => handleSelectTime(time)} 
-                      format="hh:mm a"
-                      minuteStep={5}
-                      defaultValue={summary.timeRange}/>
+                <div className="availability-cmp_steps-wrapper">
+                  <div className="availability-cmp_timerange-wrapper">
+                    <div className="availability-cmp_timerange-cont">
+                      <div className="step-title">3. Select the time frame for your activity</div>
+                      <TimePicker.RangePicker 
+                        use12Hours 
+                        onChange={(time) => handleSelectTime(time)} 
+                        format="hh:mm a"
+                        minuteStep={5}
+                        defaultValue={summary.timeRange}/>
+                    </div>
                   </div>
-                </div>
 
-                <div className="availability-cmp_guests-wrapper">
-                  <div className="step-title">4. Number of guests</div>
-                  <input className="guests-input" type="number" 
-                    onChange={(event) => handleNumberOfGuests(event.target.value)}
-                    defaultValue={summary.numberOfGuests}/>
+                  <div className="availability-cmp_guests-wrapper">
+                    <div className="step-title">4. Number of guests</div>
+                    <input className="guests-input" type="number" 
+                      onChange={(event) => handleNumberOfGuests(event.target.value)}
+                      defaultValue={summary.numberOfGuests}/>
+                  </div>
                 </div>
               </div>
             </article>

@@ -7,6 +7,21 @@
         .payment-cmp_event-col{
             @include grid-col_left;
             width: 62%;
+            .contact-info-checkbox{
+                margin-bottom: 20px;
+                label{
+                    margin-left: 5px;
+                    line-height: 16px;
+                    display: inline-block;
+                    vertical-align: top;
+                }
+                input{
+                    width: 16px;
+                    height: 16px;
+                    border: 1px solid #C4C4C4;
+                    display: inline-block;
+                }
+            }
             .form-grid{
                 @include form-grid;
             }
@@ -27,6 +42,10 @@
                 background-color: #C4C4C4;
                 height: 1px;
                 width: 100%;
+                margin: 20px 0 ;
+            }
+            .totals{
+                text-align: right;
             }
         }
     }

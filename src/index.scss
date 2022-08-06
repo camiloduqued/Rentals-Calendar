@@ -60,6 +60,9 @@ $border-dark:  #C4C4C4;
     border-radius: 5px;
     font-family: 'Poppins', sans-serif;
     padding: 5px;
+    &.error-input{
+      border-color: rgb(225, 14, 14);
+    }
     &[type=submit]{
       background: #1889FF;
       color: #FFFFFF;
@@ -73,11 +76,23 @@ $border-dark:  #C4C4C4;
   flex-wrap: wrap;
   .form-grid_col{
       margin-bottom: 20px;
+      h5{
+        font-size: 11px;
+        font-style:italic;
+        margin-top: 3px;
+        margin-bottom: 0;
+      }
       label{
           display: block;
       }
       input{
-          @include styled-input;
+        @include styled-input;
+      }
+      button{
+        @include styled-input;
+        color: #fff;
+        background: #1889FF;
+        border: 0 !important;
       }
       &-50{
           width: 48%;

@@ -13,6 +13,7 @@ const PackagesProvider = (props) => {
         {
             id: "0", 
             Auctifera__Location__r: {
+                Name: 'Conference Room',
                 Auctifera__Capacity__c: 30
             },
             Auctifera__Rental_Event__r: {
@@ -28,6 +29,7 @@ const PackagesProvider = (props) => {
         {
             id: "1", 
             Auctifera__Location__r: {
+                Name: 'Conference Room 2',
                 Auctifera__Capacity__c: 6
             },
             Auctifera__Rental_Event__r: {
@@ -43,6 +45,7 @@ const PackagesProvider = (props) => {
         {
             id: "2", 
             Auctifera__Location__r: {
+                Name: 'Conference Room 3',
                 Auctifera__Capacity__c: 10
             },
             Auctifera__Rental_Event__r: {
@@ -58,6 +61,7 @@ const PackagesProvider = (props) => {
         {
             id: "3", 
             Auctifera__Location__r: {
+                Name: 'Conference Room 4',
                 Auctifera__Capacity__c: 300
             },
             Auctifera__Rental_Event__r: {
