@@ -1,13 +1,13 @@
 import { useContext, useState } from "react"
 import { SummaryContext } from "../Contexts/SummaryContext"
 import "./Payment.scss"
+
+import Service from '../service.lib'
+
 const Payment = () =>{
     const {summary} = useContext(SummaryContext);
     const [isSameInformation, setIsSameInformation] = useState(false);
     const formatter = new Intl.DateTimeFormat('en-US', { dateStyle: 'full'});
-    const handleReserve = (event) =>{
-        event.preventDefault();
-    }
 
     const currencyFormatter = Intl.NumberFormat("en-US", {
         style: "currency",
@@ -19,6 +19,24 @@ const Payment = () =>{
     const handleChangeCheckbox = (event) =>{
         setIsSameInformation(event.target.checked);
     }
+
+    const payTotal = (event) =>{
+        pay(event, totalAmount)
+    }
+    const payDeposit = (event) =>{
+        pay(event, deposit)
+    }
+
+    const pay = (event, amountToPay)=>{
+        event.preventDefault();
+        console.log('summary', summary);
+        const body = {
+
+        }
+        return
+        const response = Service.purchase(body);
+    }
+
     return(
         <div className="payment-cmp">
             <section className="payment-cmp_wrapper">
@@ -68,11 +86,11 @@ const Payment = () =>{
                                     <input type="text" name="country" id="country" required/>
                                 </div>
                                 <div className={`form-grid_col form-grid_col-${deposit && deposit > 0 ? '50': '100'}`}>
-                                    <button value="Reserve " onClick={(event) => handleReserve(event)}>Pay {currencyFormatter.format(totalAmount)}</button>
+                                    <button value="Reserve " onClick={(event) => payTotal(event)}>Pay Total <b>{currencyFormatter.format(totalAmount)}</b></button>
                                 </div>
                                 {deposit && deposit > 0 ? (
                                     <div className="form-grid_col form-grid_col-50">
-                                        <button value="Reserve " onClick={(event) => handleReserve(event)}>Pay Deposit {currencyFormatter.format(deposit)}</button>
+                                        <button value="Reserve " onClick={(event) => payDeposit(event)}>Pay Deposit {currencyFormatter.format(deposit)}</button>
                                     </div>
                                     ) : null}
                             </div>

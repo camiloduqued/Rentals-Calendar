@@ -74,6 +74,8 @@ function Availability() {
 
   const handleSelectTime = (momentObj) =>{
     summary.timeRange = momentObj;
+    setStartTime(momentObj[0])
+    setEndTime(momentObj[1])
     setSummary(summary);
   }
 
