@@ -6,14 +6,14 @@
         @include grid_wrapper; 
         .payment-cmp_event-col{
             @include grid-col_left;
-            width: 60%;
+            width: 62%;
             .form-grid{
                 @include form-grid;
             }
         }
         .payment-cmp_summary-col{
             @include grid-col_right;
-            width: 30%;
+            width: 35%;
             background-color: #F4F4F4;
         }
     }

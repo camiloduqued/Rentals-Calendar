@@ -6,7 +6,7 @@
         @include grid_wrapper; 
         .registration-cmp_event-col{
             @include grid-col_left;
-            width: 40%;
+            width: 45%;
             .rental-image{
                 height: 120px;
                 width: 100%;
@@ -27,8 +27,11 @@
             }
         }
         .registration-cmp_registration-col{
-            @include grid-col_right;
-            width: 50%;
+            width: 52%;
+            .registration-cmp_registration-wrapper{
+                @include containers;
+                padding: 1.5rem;
+            }
             .form-grid{
                 @include form-grid;
             }

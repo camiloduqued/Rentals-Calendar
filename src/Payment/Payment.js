@@ -1,5 +1,8 @@
+import { useContext } from "react"
+import { SummaryContext } from "../Contexts/SummaryContext"
 import "./Payment.scss"
 const Payment = () =>{
+    const {summary} = useContext(SummaryContext);
     return(
         <div className="payment-cmp">
             <section className="payment-cmp_wrapper">
@@ -54,7 +57,9 @@ const Payment = () =>{
                 </div>
                 <div className="payment-cmp_summary-col">
                     <h2>Summary</h2>
-                       
+                    <div>
+                        {summary && summary.item ? summary.item.id : null}
+                    </div>
                 </div>
             </section>
         </div>

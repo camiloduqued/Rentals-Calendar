@@ -27,36 +27,38 @@ const Registration = () =>{
                     </article>
                 </div>
                 <div className="registration-cmp_registration-col">
-                    <h2>Host Information</h2>
-                    <div>
-                        <form>
-                            <div className="form-grid">
-                                <div className="form-grid_col form-grid_col-50">
-                                    <label htmlFor="firstName">* First Name</label>
-                                    <input type="text" name="firstName" id="firstName" required/>
-                                </div>
-                                <div className="form-grid_col form-grid_col-50">
-                                    <label htmlFor="firstName">* First Name</label>
-                                    <input type="text" name="firstName" id="firstName" required/>
-                                </div>
-                                <div className="form-grid_col form-grid_col-100">
-                                    <label htmlFor="email">* Email</label>
-                                    <input type="email" name="email" id="email" required/>
-                                </div>
-                                <div className="form-grid_col form-grid_col-50">
-                                    <label htmlFor="homePhone">Home Phone</label>
-                                    <input type="phone" name="homePhone" id="homePhone"/>
-                                </div>
-                                <div className="form-grid_col form-grid_col-50">
-                                    <label htmlFor="mobilePhone">* Mobile Phone</label>
-                                    <input type="phone" name="mobilePhone" id="mobilePhone" required/>
-                                </div>
+                    <div className="registration-cmp_registration-wrapper">
+                        <h2>Host Information</h2>
+                        <div>
+                            <form>
+                                <div className="form-grid">
+                                    <div className="form-grid_col form-grid_col-50">
+                                        <label htmlFor="firstName">* First Name</label>
+                                        <input type="text" name="firstName" id="firstName" required/>
+                                    </div>
+                                    <div className="form-grid_col form-grid_col-50">
+                                        <label htmlFor="firstName">* First Name</label>
+                                        <input type="text" name="firstName" id="firstName" required/>
+                                    </div>
+                                    <div className="form-grid_col form-grid_col-100">
+                                        <label htmlFor="email">* Email</label>
+                                        <input type="email" name="email" id="email" required/>
+                                    </div>
+                                    <div className="form-grid_col form-grid_col-50">
+                                        <label htmlFor="homePhone">Home Phone</label>
+                                        <input type="phone" name="homePhone" id="homePhone"/>
+                                    </div>
+                                    <div className="form-grid_col form-grid_col-50">
+                                        <label htmlFor="mobilePhone">* Mobile Phone</label>
+                                        <input type="phone" name="mobilePhone" id="mobilePhone" required/>
+                                    </div>
 
-                                <div className="form-grid_col form-grid_col-100">
-                                <input type="submit" value="Go to Payment"/>
+                                    <div className="form-grid_col form-grid_col-100">
+                                    <input type="submit" value="Go to Payment"/>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </section>

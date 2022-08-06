@@ -1,12 +1,13 @@
 @import "../index.scss";
 
 .day-selected{
-    background: rgba(24, 137, 255, 0.2);
-    border: 0.69413px solid #1889FF;
-    box-shadow: 0px 0px 2.77652px #1889FF;
+    background: rgba(24, 137, 255, 0.2) !important;
+    border: 0.69413px solid #1889FF !important;
+    box-shadow: 0px 0px 2.77652px #1889FF !important;
     .fc-daygrid-day-top{
         .fc-daygrid-day-number{
-            color: #1889FF;
+            color: #1889FF !important;
+            background-color: white !important;
         }
     }
 
@@ -16,7 +17,7 @@
         @include grid_wrapper; 
         .availability-cmp_calendar-col{
             @include grid-col_left;
-            width: 50%;
+            width: 48%;
             .availability-cmp_type-wrapper{
                 padding-bottom: 0;
                 label{
@@ -32,14 +33,23 @@
             }
         }
         .availability-cmp_packages-col{
-            @include grid-col_right;
-            width: 40%;
+            width: 50%;
+            padding: 0 !important;
             ul{
+                @include containers;
                 padding: .65rem;
+                overflow-y: scroll;
+                max-height: 95vh;
             }
         }
     }
     .fc{
+        padding: .80rem;
+        border-radius: .65rem;
+        border: 1px solid #C9C9C8;
+        .fc-toolbar-title{
+            font-size: 17.35px;
+        }
         .fc-daygrid-day-top{
             flex-direction: initial !important;
             justify-content: center;
@@ -49,6 +59,13 @@
                 border-radius: 2px;
                 line-height: 1;
                 margin-top: 5px;
+            }
+        }
+        .fc-day-today{
+            background-color: transparent;
+            .fc-daygrid-day-number{
+                background-color: #1889FF;
+                color: white;
             }
         }
     }
