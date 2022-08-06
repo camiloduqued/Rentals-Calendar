@@ -131,18 +131,6 @@ function Availability() {
                   initialView="dayGridMonth"
                   initialDate={summary.dateString}
                   dateClick={handleDateClick}
-                  events={[
-                    {
-                      start: new Date(),
-                      end: new Date(),
-                      allDay: false
-                    },
-                    {
-                      start: new Date(),
-                      end: new Date(),
-                      allDay: false
-                    }
-                  ]}
                   headerToolbar={{start: 'title', center: '', right: 'prev,next'}}
                 />
                 <div className="availability-cmp_steps-wrapper">

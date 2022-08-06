@@ -99,6 +99,7 @@ $border-dark:  #C4C4C4;
         background: #1889FF;
         border: 0 !important;
         transition: background-color ease-in-out 300ms;
+        cursor: pointer;
         &:hover{
           background: #126dce;
         }
