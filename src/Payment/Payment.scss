@@ -24,6 +24,11 @@
             }
             .form-grid{
                 @include form-grid;
+                .deposit-button{
+                    background-color: white;
+                    color: #1889FF;
+                    border-color: #1889FF;
+                }
             }
         }
         .payment-cmp_summary-col{

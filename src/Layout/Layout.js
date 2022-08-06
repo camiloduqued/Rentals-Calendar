@@ -14,11 +14,7 @@ import Spinner from '../components/Spinner';
  *  Global variables for animations and transitions
 */
 const transition = { type: "tween", ease: "anticipate", duration: .8 }
-const variants = {
-    hidden: { opacity: 0, y: -30 },
-    visible: { opacity: 1, y: 0 },
-    out: { opacity: 0, y: -30 }
-}
+
 const stepsVariants = {
     hidden: { opacity: 0, y: -30 },
     visible: { opacity: 1, y: 0 },
@@ -28,6 +24,7 @@ const stepsVariants = {
 const Layout = (props) => {
   const {step, setStep} = useContext(StepsContext)
   const {summary, setSummary} = useContext(SummaryContext);
+  
   const renderComponents = () =>{
     switch(step){
       case "Registration":

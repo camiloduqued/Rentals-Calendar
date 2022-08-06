@@ -40,12 +40,24 @@ const Registration = () =>{
                                 <p>Cost: {currencyFormatter.format(summary.item.Auctifera__Rental_Event__r.Auctifera__Event_Rental_Total_Amount__c)}</p>
                             </div>
                             <div className="rental-description-disclaimers">
-                                <h3>Description</h3>
-                                <div dangerouslySetInnerHTML={{__html: summary.item.Auctifera__Rental_Event__r.Auctifera__Description__c}}/>
-                                <h3>Disclaimers</h3>
-                                <div dangerouslySetInnerHTML={{__html: summary.item.Auctifera__Rental_Event__r.Auctifera__Disclaimers__c}}/>
-                                <h3>Insurance Information</h3>
-                                <div dangerouslySetInnerHTML={{__html: summary.item.Auctifera__Rental_Event__r.Auctifera__Insurance_Information__c}}/>
+                                {summary.item.Auctifera__Rental_Event__r.Auctifera__Description__c && 
+                                    <>
+                                        <h3>Description</h3>
+                                        <div dangerouslySetInnerHTML={{__html: summary.item.Auctifera__Rental_Event__r.Auctifera__Description__c}}/>
+                                    </>
+                                }
+                                {summary.item.Auctifera__Rental_Event__r.Auctifera__Disclaimers__c && 
+                                    <>
+                                        <h3>Disclaimers</h3>
+                                        <div dangerouslySetInnerHTML={{__html: summary.item.Auctifera__Rental_Event__r.Auctifera__Disclaimers__c}}/>
+                                    </>
+                                }
+                                {summary.item.Auctifera__Rental_Event__r.Auctifera__Insurance_Information__c && 
+                                    <>
+                                        <h3>Insurance Information</h3>
+                                        <div dangerouslySetInnerHTML={{__html: summary.item.Auctifera__Rental_Event__r.Auctifera__Insurance_Information__c}}/>
+                                    </>
+                                }
                             </div>
                         </div>
                     </article>
