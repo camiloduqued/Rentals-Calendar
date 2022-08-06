@@ -64,26 +64,26 @@ const Payment = () =>{
                                     <label htmlFor="firstName">* First Name</label>
                                     <input
                                         className={errors.firstName ? 'error-input': ''} 
-                                        defaultValue={isSameInformation ? summary.contact.firstName : ''} type="text" name="firstName" id="firstName" required onChange={handleChange}/>
+                                        defaultValue={isSameInformation ? summary.contact.firstName : null} type="text" name="firstName" id="firstName" required onChange={handleChange}/>
                                     {errors.firstName && <h5>{errors.firstName}</h5>}
                                 </div>
                                 <div className="form-grid_col form-grid_col-50">
                                     <label htmlFor="lastName">* Last Name</label>
                                     <input
                                         className={errors.lastName ? 'error-input': ''}  
-                                        value={isSameInformation ? summary.contact.lastName : undefined} type="text" name="lastName" id="lastName" required onChange={handleChange}/>
+                                        defaultValue={isSameInformation ? summary.contact.lastName : null} type="text" name="lastName" id="lastName" required onChange={handleChange}/>
                                     {errors.lastName && <h5>{errors.lastName}</h5>}
                                 </div>
                                 <div className="form-grid_col form-grid_col-100">
                                     <label htmlFor="email">* Email</label>
                                     <input
                                         className={errors.email ? 'error-input': ''}  
-                                        value={isSameInformation ? summary.contact.email : null} type="email" name="email" id="email" required onChange={handleChange}/>
+                                        defaultValue={isSameInformation ? summary.contact.email : null} type="email" name="email" id="email" required onChange={handleChange}/>
                                     {errors.email && <h5>{errors.email}</h5>}
                                 </div>
                                 <div className="form-grid_col form-grid_col-50">
                                     <label htmlFor="phone">Phone</label>
-                                    <input value={isSameInformation ? summary.contact.mobilePhone : null} type="phone" name="phone" id="phone" onChange={handleChange}/>
+                                    <input defaultValue={isSameInformation ? summary.contact.mobilePhone : null} type="phone" name="phone" id="phone" onChange={handleChange}/>
                                 </div>
                                 <div className="form-grid_col form-grid_col-50">
                                     <label htmlFor="address">Address</label>
