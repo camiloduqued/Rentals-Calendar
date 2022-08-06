@@ -6,6 +6,7 @@ const StepsHeader = ({step, changeStep}) =>{
     const {summary} = useContext(SummaryContext);
     const [width, setWidth] = useState("0%")
     const isValidStep = () =>{
+        console.log("summary >>> ", summary);
         if(summary){
             if(summary.category 
                 && summary.date 

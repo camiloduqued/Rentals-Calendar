@@ -30,6 +30,7 @@ const item = {
 function Availability() {
   const {packages, setPackages} = useContext(PackagesContext);
   const {summary, setSummary} = useContext(SummaryContext);
+  const [isFetching, setIsFetching] = useState(false);
 
   const [startTime, setStartTime] = useState();
   const [endTime, setEndTime] = useState();
@@ -40,6 +41,7 @@ function Availability() {
   const handleDateClick = (elem) =>{
     let calendarCells = document.getElementsByClassName("fc-daygrid-day");
     if(elem.dayEl.classList.contains("fc-day-past")) return;
+
     for(let cell of calendarCells){ 
       cell.classList.remove("day-selected")
     }
@@ -57,17 +59,28 @@ function Availability() {
   }
 
   useEffect(() => {
+    const validFilters = () =>{
+      if(numberOfGuests != null && numberOfGuests.trim() !== "" && 
+      category != null && category.trim() !== "" &&
+      rentalDate != null && 
+      startTime != null && 
+      endTime != null) {
+        return true;
+      }
+      return false
+    }
+    if(validFilters()){
+      setIsFetching(true);
+    }
     const fetchTemplates = async () => {
-      if (numberOfGuests != null && numberOfGuests.trim() !== "" && 
-          category != null && category.trim() !== "" &&
-          rentalDate != null && 
-          startTime != null && 
-          endTime != null) 
+      if (validFilters()) 
       {
         const service = new Service();
         const packages = await service.getRentals(parseInt(numberOfGuests), category, rentalDate.getTime(), startTime, endTime);
         setPackages(packages)
+        setIsFetching(false);
       }
+      setIsFetching(false);
     }
     fetchTemplates()
   }, [numberOfGuests, category, rentalDate, startTime, endTime])
@@ -98,18 +111,17 @@ function Availability() {
       foundCell.classList.add("day-selected")
     }
   },[])
-
   return (
     <div className="availability-cmp">
         <section className='availability-cmp_wrapper'>
             <article className='availability-cmp_calendar-col'>
               <div className="availability-cmp_type-wrapper">
                 <label className="step-title" htmlFor="categorySelector">1. Select a category according to your category</label>
-                <select id="categorySelector" onChange={(event) => onChangeCategory(event.target.value)}>
-                  <option defaultChecked value=""> Select a category </option>
-                  <option value="Birthday Party" defaultChecked={summary?.category === "Birthday Party" ? true:false}>Birthday Party</option>
-                  <option value="Weddings" defaultChecked={summary?.category === "Weddings" ? true:false}>Wedding</option>
-                  <option value="Reception Only" defaultChecked={summary?.category === "Reception Only" ? true:false}>Reception Only</option>
+                <select id="categorySelector" onChange={(event) => onChangeCategory(event.target.value)} value={summary?.category}>
+                  <option value=""> Select a category </option>
+                  <option value="Birthday Party" defaultValue={summary?.category === "Birthday Party" ? true:false}>Birthday Party</option>
+                  <option value="Weddings" defaultValue={summary?.category === "Weddings" ? true:false}>Wedding</option>
+                  <option value="Reception Only" defaultValue={summary?.category === "Reception Only" ? true:false}>Reception Only</option>
                 </select>
               </div>
               <div className='availability-cmp_calendar_wrapper'>
@@ -119,6 +131,18 @@ function Availability() {
                   initialView="dayGridMonth"
                   initialDate={summary.dateString}
                   dateClick={handleDateClick}
+                  events={[
+                    {
+                      start: new Date(),
+                      end: new Date(),
+                      allDay: false
+                    },
+                    {
+                      start: new Date(),
+                      end: new Date(),
+                      allDay: false
+                    }
+                  ]}
                   headerToolbar={{start: 'title', center: '', right: 'prev,next'}}
                 />
                 <div className="availability-cmp_steps-wrapper">
@@ -146,18 +170,22 @@ function Availability() {
             
             <article className='availability-cmp_packages-col'>
             <div className="list-wrapper">
-              {/*<Spinner/>*/}
-              <motion.ul
-                variants={container}
-                initial="hidden"
-                animate="show">
-                <li className="step-title">5. Choose the package for you</li>
-                {packages.map((pack, index) => {
-                  return (
-                    <PackageItem rentalPackage={pack} key={index} variants={item}/>
-                  );
-                })}
-              </motion.ul>
+              {isFetching && <Spinner/>}
+                <motion.ul
+                  variants={container}
+                  initial="hidden"
+                  animate="show">
+                  <li className="step-title">5. Choose the package for you</li>
+                  {!packages || packages.length === 0 ? (
+                    <li className="packages-warning">The packages will be available once you fill out all the fields</li>
+                  ):(
+                    packages.map((pack, index) => {
+                      return (
+                        <PackageItem rentalPackage={pack} key={index} variants={item}/>
+                      );
+                    })
+                  )}
+                </motion.ul>
             </div>
             </article>
         </section>
