@@ -4,20 +4,14 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction';
 import './Availability.scss';
 import {PackagesContext} from "../Contexts/PackagesContext";
-import PackageItem from "./components/PackageItem"
+import PackageItem from "./components/PackageItem";
+import moment from 'moment';
+import {TimePicker} from "antd";
+import {motion} from "framer-motion"
 
-/*
-  Time picker library
-*/
-import TextField from '@mui/material/TextField';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 
 function Availability() {
   const {packages} = useContext(PackagesContext);
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date().setHours(new Date().getHours() + 1));
 
   const handleDateClick = (elem) =>{
     let calendarCells = document.getElementsByClassName("fc-daygrid-day");
@@ -26,8 +20,17 @@ function Availability() {
     }
     elem.dayEl.classList.add("day-selected")
   }
+
+  const handleSelectTime = (type, momentObj) =>{
+    if(type === "startTime"){
+      // execute when start time
+      console.log(type + ": "+ momentObj)
+    }else{
+      // execute when end time
+      console.log(type + ": "+ momentObj)
+    }
+  }
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
     <div className="availability-cmp">
         <section className='availability-cmp_wrapper'>
             <article className='availability-cmp_calendar-col'>
@@ -49,42 +52,28 @@ function Availability() {
                 <div className="availability-cmp_timerange-wrapper">
                   <div>3. Select the time frame for your activity</div>
                   <div className="availability-cmp_timerange-cont">
-                    <TimePicker
-                      value={startDate}
-                      onChange={(newValue) => {
-                        setStartDate(newValue);
-                        console.log(newValue)
-                      }}
-                      renderInput={(params) => <TextField {...params} />}
-                    />
-                    <span className="to-label">To</span>
-                    <TimePicker
-                      value={endDate}
-                      onChange={(newValue) => {
-                      setEndDate(newValue);
-                    }}
-                      renderInput={(params) => <TextField {...params} />}
-                    />
+                   <TimePicker use12Hours onSelect={(time) => handleSelectTime("startTime", time)}/>
+                    <span>To</span>
+                   <TimePicker use12Hours onSelect={(time) => handleSelectTime("endTime", time)}/>
                   </div>
                 </div>
 
                 <div className="availability-cmp_guests-wrapper">
-                  <div>5. Number of guests</div>
+                  <div>4. Number of guests</div>
                   <input/>
                 </div>
               </div>
             </article>
             
             <article className='availability-cmp_packages-col'>
-              <ul>
+              <motion.ul>
                 {packages.map((pack, index) => {
                   return <PackageItem rentalPackage={pack} key={index}/>;
                 })}
-              </ul>
+              </motion.ul>
             </article>
         </section>
     </div>
-    </LocalizationProvider>
   );
 }
 

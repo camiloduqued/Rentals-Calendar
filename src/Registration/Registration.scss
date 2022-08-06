@@ -6,10 +6,11 @@
         @include grid_wrapper; 
         .registration-cmp_event-col{
             @include grid-col_left;
-            width: 40%;
+            width: 45%;
             .rental-image{
                 height: 120px;
                 width: 100%;
+                margin-bottom: 20px;
                 img{
                     object-fit: cover;
                     height: 100%;
@@ -17,10 +18,37 @@
                     border-radius: .65rem;
                 }
             }
+            .rental-package-info{
+                h4{
+                    font-size: 20px;
+                    margin-top: 20px;
+                }
+                p{
+                    margin: 5px 0;
+                }
+            }
+            .rental-description-disclaimers{
+                h3{
+                    margin: 30px 0 15px;
+                }
+                p{
+                    font-size: 14px;
+                } 
+            }
         }
         .registration-cmp_registration-col{
-            @include grid-col_right;
-            width: 50%;
+            width: 52%;
+            @media screen and (max-width:400px) {
+                width: 100% !important;
+                margin-top: 20px;
+            }
+            .registration-cmp_registration-wrapper{
+                @include containers;
+                padding: 1.5rem;
+            }
+            .form-grid{
+                @include form-grid;
+            }
         }
     }
 }

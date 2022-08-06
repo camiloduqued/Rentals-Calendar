@@ -2,6 +2,7 @@ import './App.scss';
 import Layout from "./Layout/Layout";
 import PackagesProvider from "./Contexts/PackagesContext";
 import StepsProvider from "./Contexts/StepsContext";
+import SummaryProvider from './Contexts/SummaryContext';
 
 const App = () => {
   
@@ -9,7 +10,9 @@ const App = () => {
     <div className="App">
       <StepsProvider>
         <PackagesProvider>
-            <Layout/>
+            <SummaryProvider>
+              <Layout/>
+            </SummaryProvider>
         </PackagesProvider>
       </StepsProvider>
     </div>
