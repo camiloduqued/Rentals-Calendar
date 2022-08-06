@@ -23,7 +23,7 @@ const PackageItem = (props) =>{
     const cleanRentalType = type ? type.split(';').join(', ') : null
 
     return (
-        <motion.li className="package-item_wrapper" onClick={() => onClickPackage()} variants={variants}>
+        <motion.li className={`package-item_wrapper ${summary?.item?.id === rentalPackage.id ? 'selected':''}`} onClick={() => onClickPackage()} variants={variants}>
             {cleanRentalType &&
             <div className="ribbon">
                 <div className="ribbon-wrapper">

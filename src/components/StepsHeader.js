@@ -1,6 +1,9 @@
+import { useContext } from "react";
+import { SummaryContext } from "../Contexts/SummaryContext";
 import "./StepsHeader.scss";
 
 const StepsHeader = ({step, changeStep}) =>{
+    const {summary} = useContext(SummaryContext);
     return (
         <section className='steps-header'>
             <ul>
@@ -8,7 +11,7 @@ const StepsHeader = ({step, changeStep}) =>{
                     <div className="circle"></div>
                     <div className="label">Availability</div>
                 </li>
-                <li onClick={() => changeStep("Registration")}>
+                <li onClick={() => changeStep("Registration")} className={summary?.item ? '': 'disabled'}>
                     <div className="circle"></div>
                     <div className="label">Registration</div>
                 </li>
