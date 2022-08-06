@@ -5,12 +5,14 @@ const useForm = (callback) => {
     
     //Form values
     const [values, setValues] = useState({});
+
+    const [error, setError] = useState()
     //Errors
     const [errors, setErrors] = useState({});
 
 
 
-    const validate = (event, name, value) => {
+    const validate = (name, value) => {
         //A function to validate each input values
 
         switch (name) {
@@ -92,7 +94,7 @@ const useForm = (callback) => {
         let name = event.target.name;
         let val = event.target.value;
 
-        validate(event,name,val);
+        validate(name,val);
         //Let's set these values in state
 
         setValues({
@@ -107,10 +109,11 @@ const useForm = (callback) => {
         if(event) event.preventDefault();
 
         if(Object.keys(errors).length === 0 && Object.keys(values).length !==0 ){
+            setError(null)
             if(callback) callback();
-
         }else{
-            return
+            setError("Please fill out the required fields")
+            return;
         }
     }
 
@@ -119,6 +122,7 @@ const useForm = (callback) => {
         values,
         setValues,
         errors,
+        error,
         handleChange,
         handleSubmit
     }

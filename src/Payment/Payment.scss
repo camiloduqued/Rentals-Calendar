@@ -30,6 +30,14 @@
                     border-color: #1889FF !important;
                 }
             }
+            .error-message{
+                background-color: rgb(241, 176, 176);
+                color: rgb(153, 17, 17);
+                padding: 10px 20px;
+                border-radius: 5px;
+                margin: 10px 0;
+                width: 100%;
+            }
         }
         .payment-cmp_summary-col{
             @include grid-col_right;

@@ -46,7 +46,8 @@ const Payment = () =>{
         setSummary(summary)
     }
 
-    const {handleChange, values, errors, handleSubmit} = useForm(getContact)
+    const {handleChange, values, errors, handleSubmit, error} = useForm(getContact)
+    console.log("error >>> ", error);
 
     return(
         <div className="payment-cmp">
@@ -105,6 +106,9 @@ const Payment = () =>{
                                     <label htmlFor="country">Country</label>
                                     <input type="text" name="country" id="country" required onChange={handleChange}/>
                                 </div>
+                                {error &&
+                                    <div className="error-message">{error}</div>
+                                }
                                 <div className={`form-grid_col form-grid_col-${deposit && deposit > 0 ? '50': '100'}`}>
                                     <button value="Reserve " onClick={(event) => payTotal(event)}>Pay Total <b>{currencyFormatter.format(totalAmount)}</b></button>
                                 </div>
