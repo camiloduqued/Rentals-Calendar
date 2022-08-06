@@ -13,15 +13,22 @@
 
 }
 .availability-cmp{
+    .step-title{
+        margin-bottom: 5px;
+    }
     .availability-cmp_wrapper{
         @include grid_wrapper; 
         .availability-cmp_calendar-col{
             @include grid-col_left;
             width: 48%;
             .availability-cmp_type-wrapper{
+                margin-bottom: 20px;
                 padding-bottom: 0;
                 label{
                     display: block;
+                }
+                select{
+                    @include styled-input;
                 }
             }
             .availability-cmp_calendar_wrapper{
@@ -29,6 +36,23 @@
                     .availability-cmp_timerange-cont{
                         margin-top: 20px;
                     }
+                }
+            }
+            .availability-cmp_timerange-wrapper{
+                margin-top: 20px;
+                span{
+                    margin: 0 5px;
+                }
+                .ant-picker{
+                    @include styled-input;
+                    width: 80% !important;
+                    display: inline-flex !important;
+                }
+            }
+            .availability-cmp_guests-wrapper{
+                margin-top: 20px;
+                .guests-input{
+                    @include styled-input;
                 }
             }
         }
@@ -40,8 +64,11 @@
             }
             padding: 0 !important;
             ul{
+                .step-title{
+                    margin-bottom: 20px
+                }
                 @include containers;
-                padding: .65rem;
+                padding: 1rem;
                 overflow-y: scroll;
                 max-height: 95vh;
             }

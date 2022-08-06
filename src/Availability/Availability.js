@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction';
@@ -8,10 +8,27 @@ import PackageItem from "./components/PackageItem";
 import moment from 'moment';
 import {TimePicker} from "antd";
 import {motion} from "framer-motion"
+import { SummaryContext } from "../Contexts/SummaryContext";
 
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      delayChildren: .5,
+      staggerChildren: 0.2
+    }
+  }
+}
+
+const item = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1 }
+}
 
 function Availability() {
   const {packages} = useContext(PackagesContext);
+  const {summary, setSummary} = useContext(SummaryContext);
 
   const handleDateClick = (elem) =>{
     let calendarCells = document.getElementsByClassName("fc-daygrid-day");
@@ -19,23 +36,36 @@ function Availability() {
       cell.classList.remove("day-selected")
     }
     elem.dayEl.classList.add("day-selected")
+    summary.date = elem.date;
+    summary.dateString = elem.dateStr;
+    console.log("elem >>> ", elem);
+    setSummary(summary);
   }
 
-  const handleSelectTime = (type, momentObj) =>{
-    if(type === "startTime"){
-      // execute when start time
-      console.log(type + ": "+ momentObj)
-    }else{
-      // execute when end time
-      console.log(type + ": "+ momentObj)
-    }
+  const handleSelectTime = (momentObj) =>{
+    summary.timeRange = momentObj;
+    setSummary(summary);
   }
+
+  useEffect(()=>{
+    let calendarCells = document.getElementsByClassName("fc-daygrid-day");
+    let foundCell
+    for(let cell of calendarCells){ 
+      cell.classList.remove("day-selected")
+      if(cell.getAttribute('data-date') === summary.dateString){
+        foundCell = cell;
+      }
+    }
+    if(foundCell){
+      foundCell.classList.add("day-selected")
+    }
+  },[])
   return (
     <div className="availability-cmp">
         <section className='availability-cmp_wrapper'>
             <article className='availability-cmp_calendar-col'>
               <div className="availability-cmp_type-wrapper">
-                <label htmlFor="categorySelector">1. Select a category according to your category</label>
+                <label className="step-title" htmlFor="categorySelector">1. Select a category according to your category</label>
                 <select id="categorySelector">
                   <option value="Weddings">Weddings</option>
                   <option value="Birhdays">Birhdays</option>
@@ -43,32 +73,44 @@ function Availability() {
                 </select>
               </div>
               <div className='availability-cmp_calendar_wrapper'>
-                <div>2. Select the day you want for your activity</div>
+                <div className="step-title">2. Select the day you want for your activity</div>
                 <FullCalendar
                   plugins={[ dayGridPlugin, interactionPlugin ]}
                   initialView="dayGridMonth"
+                  defaultDate={summary.dateString}
+                  initialDate={summary.dateString}
                   dateClick={handleDateClick}
+                  headerToolbar={{start: 'title', center: '', right: 'prev,next'}}
                 />
                 <div className="availability-cmp_timerange-wrapper">
-                  <div>3. Select the time frame for your activity</div>
-                  <div className="availability-cmp_timerange-cont">
-                   <TimePicker use12Hours onSelect={(time) => handleSelectTime("startTime", time)}/>
-                    <span>To</span>
-                   <TimePicker use12Hours onSelect={(time) => handleSelectTime("endTime", time)}/>
+                <div className="availability-cmp_timerange-cont">
+                    <div className="step-title">3. Select the time frame for your activity</div>
+                    <TimePicker.RangePicker 
+                      use12Hours 
+                      onChange={(time) => handleSelectTime(time)} 
+                      format="hh:mm a"
+                      minuteStep={5}/>
+                   
                   </div>
                 </div>
 
                 <div className="availability-cmp_guests-wrapper">
-                  <div>4. Number of guests</div>
-                  <input/>
+                  <div className="step-title">4. Number of guests</div>
+                  <input className="guests-input"/>
                 </div>
               </div>
             </article>
             
             <article className='availability-cmp_packages-col'>
-              <motion.ul>
+              <motion.ul
+                variants={container}
+                initial="hidden"
+                animate="show">
+                <li className="step-title">5. Choose the package for you</li>
                 {packages.map((pack, index) => {
-                  return <PackageItem rentalPackage={pack} key={index}/>;
+                  return (
+                    <PackageItem rentalPackage={pack} key={index} variants={item}/>
+                  );
                 })}
               </motion.ul>
             </article>
