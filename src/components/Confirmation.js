@@ -1,4 +1,6 @@
-const Confirmation = (props) =>{
+
+
+const Confirmation = () =>{
     return (
         <section className="confirmation-dialog">
         <div className="wrapper">
@@ -6,7 +8,7 @@ const Confirmation = (props) =>{
             </svg>
         </div>
             <div>Purchase confirmed</div>
-            <button className="continue-button confirmation-button" onClick={()=> props.setSummary(props.summary.paymentCompleted = false)}>Conitnue Renting</button>
+            <button className="continue-button confirmation-button" onClick={()=> window.location.reload()}>Conitnue Renting</button>
         </section>
     )
 }

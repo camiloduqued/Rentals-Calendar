@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react"
+import { useContext, useState } from "react"
 import { SummaryContext } from "../Contexts/SummaryContext"
 import "./Payment.scss"
 
@@ -6,7 +6,7 @@ import Service from '../service.lib'
 import useForm from "../Hooks/useForm"
 
 const Payment = () =>{
-    const {summary, setSummary, setIsFetching, setPaymentCompleted} = useContext(SummaryContext);
+    const {summary, setSummary, setIsFetching, fetchMessage, setFetchMessage, setPaymentCompleted} = useContext(SummaryContext);
     const [isSameInformation, setIsSameInformation] = useState(false);
     const formatter = new Intl.DateTimeFormat('en-US', { dateStyle: 'full'});
 
@@ -76,7 +76,6 @@ const Payment = () =>{
     }
 
     const {handleChange, values, errors, handleSubmit, error} = useForm(getContact)
-    console.log("error >>> ", error);
 
     return(
         <div className="payment-cmp">
