@@ -32,11 +32,11 @@ const PackageItem = (props) =>{
             </div>
             }
             <div className="package-image">
-                <img src="https://images.pexels.com/photos/8118499/pexels-photo-8118499.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Placeholder"/>
+                <img src={rentalPackage.Auctifera__Rental_Event__r.Auctifera__Primary_File_Link__c} alt="Placeholder"/>
             </div>
             <div className="package-fragment">
                 <section className="package-item_header">
-                    <div className="package-item_header-title"><span>Time Frame:</span> </div>
+                    <div className="package-item_header-title"><span>Time Frame: </span> </div>
                     <div className="package-item_header-title"><span>Capacity:</span> {rentalPackage.Auctifera__Location__r.Auctifera__Capacity__c} people</div>
                     <div className="package-item_header-title"><span>Price:</span> {currencyFormatter.format(rentalPackage.Auctifera__Rental_Event__r.Auctifera__Event_Rental_Total_Amount__c)}</div>
                     <div className="package-item_header-title"><span>Minimum Deposit:</span> {currencyFormatter.format(rentalPackage.Auctifera__Rental_Event__r.Auctifera__Minimum_Deposit_Amount__c)}</div>
