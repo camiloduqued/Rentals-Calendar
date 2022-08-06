@@ -3,7 +3,10 @@ import { SummaryContext } from "../Contexts/SummaryContext"
 import "./Payment.scss"
 const Payment = () =>{
     const {summary} = useContext(SummaryContext);
-    const formatter = new Intl.DateTimeFormat('en-US', { dateStyle: 'full'})
+    const formatter = new Intl.DateTimeFormat('en-US', { dateStyle: 'full'});
+    const handleReserve = (event) =>{
+        event.preventDefault();
+    }
     return(
         <div className="payment-cmp">
             <section className="payment-cmp_wrapper">
@@ -50,7 +53,7 @@ const Payment = () =>{
                                 </div>
 
                                 <div className="form-grid_col form-grid_col-100">
-                                <input type="submit" value="Reserve "/>
+                                    <button value="Reserve " onClick={(event) => handleReserve(event)}>Reserve</button>
                                 </div>
                             </div>
                         </form>

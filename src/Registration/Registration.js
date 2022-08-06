@@ -71,7 +71,7 @@ const Registration = () =>{
                                     </div>
 
                                     <div className="form-grid_col form-grid_col-100">
-                                    <button onClick={(event) => getContact(event)} value="Go to Payment"/>
+                                        <button onClick={(event) => getContact(event)}>Go to Payment</button>
                                     </div>
                                 </div>
                             </form>

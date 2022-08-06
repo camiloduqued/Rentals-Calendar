@@ -77,7 +77,13 @@ $border-dark:  #C4C4C4;
           display: block;
       }
       input{
-          @include styled-input;
+        @include styled-input;
+      }
+      button{
+        @include styled-input;
+        color: #fff;
+        background: #1889FF;
+        border: 0 !important;
       }
       &-50{
           width: 48%;
