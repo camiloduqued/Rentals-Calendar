@@ -9,6 +9,7 @@ import StepsHeader from "../components/StepsHeader"
 import { motion, AnimatePresence } from "framer-motion";
 import Confirmation from '../components/Confirmation';
 import { SummaryContext } from '../Contexts/SummaryContext';
+import Spinner from '../components/Spinner';
 /**
  *  Global variables for animations and transitions
 */
@@ -70,6 +71,7 @@ const Layout = (props) => {
 
   return (
     <div className="layout">
+    {summary.isFetching && <Spinner/> }
     {summary.paymentCompleted ? <Confirmation setSummary={setSummary} summary={summary}/> : (
       <>
       <StepsHeader step={step} changeStep={setStep}/>
