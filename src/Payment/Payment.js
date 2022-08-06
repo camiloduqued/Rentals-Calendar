@@ -3,6 +3,7 @@ import { SummaryContext } from "../Contexts/SummaryContext"
 import "./Payment.scss"
 const Payment = () =>{
     const {summary} = useContext(SummaryContext);
+    const formatter = new Intl.DateTimeFormat('en-US', { dateStyle: 'full'})
     return(
         <div className="payment-cmp">
             <section className="payment-cmp_wrapper">
@@ -57,9 +58,13 @@ const Payment = () =>{
                 </div>
                 <div className="payment-cmp_summary-col">
                     <h2>Summary</h2>
-                    <div>
-                        {summary && summary.item ? summary.item.id : null}
+                    <div className="line"></div>
+                    <div className="summary-item">
+                        <div className="date-container">
+                            {summary && summary.date ? formatter.format(summary.date) : null}
+                        </div>
                     </div>
+                    <div className="line"></div>
                 </div>
             </section>
         </div>

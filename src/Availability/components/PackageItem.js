@@ -2,9 +2,10 @@ import { useContext } from "react";
 import { StepsContext } from "../../Contexts/StepsContext";
 import { SummaryContext } from "../../Contexts/SummaryContext";
 import "./PackageItem.scss";
+import {motion} from "framer-motion";
 
 const PackageItem = (props) =>{
-    const {rentalPackage} = props
+    const {rentalPackage, variants} = props
     const currencyFormatter = Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD"
@@ -18,7 +19,7 @@ const PackageItem = (props) =>{
         setStep("Registration");
     }
     return (
-        <li className="package-item_wrapper" onClick={() => onClickPackage()}>
+        <motion.li className="package-item_wrapper" onClick={() => onClickPackage()} variants={variants}>
             <div className="ribbon">
                 <div className="ribbon-wrapper">
                 Reception Only
@@ -38,7 +39,7 @@ const PackageItem = (props) =>{
                     <p>{rentalPackage.description}</p>
                 </section>
             </div>
-        </li>
+        </motion.li>
     )
 }
 

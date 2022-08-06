@@ -8,6 +8,14 @@
     flex-flow: wrap;
     justify-content: space-between;
     overflow: hidden;
+    cursor: pointer;
+    transform: scale(1);
+    transition: all ease-in-out 200ms;
+    &:hover{
+        transform: scale(1.02);
+        border: 1px solid #1889FF;
+        background: rgba(24, 137, 255, 0.06)
+    }
     .ribbon{
         width: 100%;
         text-align: right;
