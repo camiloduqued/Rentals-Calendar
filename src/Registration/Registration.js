@@ -1,5 +1,21 @@
+import { preventDefault } from "@fullcalendar/react";
+import { useContext, useState } from "react";
+import { SummaryContext } from "../Contexts/SummaryContext";
 import "./Registration.scss"
 const Registration = () =>{
+    const {summary, setSummary} = useContext(SummaryContext);
+    const getContact =(event)=>{
+        event.preventDefault()
+        const inputs = document.getElementsByClassName("contact-input");
+        const contact = {}
+        for(let input of inputs){
+            const name = input.getAttribute("name");
+            const value = input.value
+            contact[name] = value;
+        }
+        summary.contact = contact;
+        setSummary(summary)
+    }
     return(
         <div className="registration-cmp">
             <section className="registration-cmp_wrapper">
@@ -35,27 +51,27 @@ const Registration = () =>{
                                 <div className="form-grid">
                                     <div className="form-grid_col form-grid_col-50">
                                         <label htmlFor="firstName">* First Name</label>
-                                        <input type="text" name="firstName" id="firstName" required/>
+                                        <input className="contact-input" type="text" name="firstName" id="firstName" required/>
                                     </div>
                                     <div className="form-grid_col form-grid_col-50">
                                         <label htmlFor="firstName">* First Name</label>
-                                        <input type="text" name="firstName" id="firstName" required/>
+                                        <input className="contact-input" type="text" name="firstName" id="firstName" required/>
                                     </div>
                                     <div className="form-grid_col form-grid_col-100">
                                         <label htmlFor="email">* Email</label>
-                                        <input type="email" name="email" id="email" required/>
+                                        <input className="contact-input" type="email" name="email" id="email" required/>
                                     </div>
                                     <div className="form-grid_col form-grid_col-50">
                                         <label htmlFor="homePhone">Home Phone</label>
-                                        <input type="phone" name="homePhone" id="homePhone"/>
+                                        <input className="contact-input" type="phone" name="homePhone" id="homePhone"/>
                                     </div>
                                     <div className="form-grid_col form-grid_col-50">
                                         <label htmlFor="mobilePhone">* Mobile Phone</label>
-                                        <input type="phone" name="mobilePhone" id="mobilePhone" required/>
+                                        <input className="contact-input" type="phone" name="mobilePhone" id="mobilePhone" required/>
                                     </div>
 
                                     <div className="form-grid_col form-grid_col-100">
-                                    <input type="submit" value="Go to Payment"/>
+                                    <button onClick={(event) => getContact(event)} value="Go to Payment"/>
                                     </div>
                                 </div>
                             </form>
