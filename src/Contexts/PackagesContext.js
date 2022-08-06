@@ -6,39 +6,59 @@ import React, { createContext, useState } from 'react';
 export const PackagesContext = createContext()
 
 const PackagesProvider = (props) => {
-    const [packages, setPackages] = useState([
+    
+    const useMockData = true;
+
+    const [packages, setPackages] = useState(useMockData ? [
         {
             id: "0", 
-            capacity: 30, 
-            price: 300, rentalType: "Weddings",
-            minimumDeposit: 100,
-            description: "Maecenas volutpat ipsum ut semper eleifend. Pellentesque mattis non quam nec tincidunt. Mauris consequat luctus sapien sed facilisis. Aliquam egestas dapibus quam eget rhoncus. Fusce ut luctus nibh, ut sollicitudin dui. Integer tortor lacus, rutrum non diam ut, elementum suscipit nibh. Nullam bibendum dolor et urna hendrerit, vel vulputate turpis posuere. Integer ultrices odio a lacus scelerisque, nec aliquam lacus rutrum. Morbi tempus felis at tincidunt vulputate. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur porttitor, risus quis ullamcorper eleifend, eros augue aliquam ipsum, sit amet tincidunt velit metus in sapien. Pellentesque bibendum sapien dui, vitae tempus augue fringilla eu."
+            Auctifera__Location__r: {
+                Auctifera__Capacity__c: 30
+            },
+            Auctifera__Rental_Event__r: {
+                Auctifera__Event_Rental_Total_Amount__c: 300,
+                Auctifera__Minimum_Deposit_Amount__c: 100,
+                Auctifera__Description__c: "Maecenas volutpat ipsum ut semper eleifend. Pellentesque mattis non quam nec tincidunt. Mauris consequat luctus sapien sed facilisis. Aliquam egestas dapibus quam eget rhoncus. Fusce ut luctus nibh, ut sollicitudin dui. Integer tortor lacus, rutrum non diam ut, elementum suscipit nibh.",
+                Auctifera__Rental_Type__c: "Weddings;Birthday Party",
+            }
         },
         {
             id: "1", 
-            capacity: 20, 
-            price: 300, 
-            rentalType: "Weddings;Birthdays", 
-            minimumDeposit: 100,
-            description: "Maecenas volutpat ipsum ut semper eleifend. Pellentesque mattis non quam nec tincidunt. Mauris consequat luctus sapien sed facilisis. Aliquam egestas dapibus quam eget rhoncus. Fusce ut luctus nibh, ut sollicitudin dui. Integer tortor lacus, rutrum non diam ut, elementum suscipit nibh. Nullam bibendum dolor et urna hendrerit, vel vulputate turpis posuere. Integer ultrices odio a lacus scelerisque, nec aliquam lacus rutrum. Morbi tempus felis at tincidunt vulputate. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur porttitor, risus quis ullamcorper eleifend, eros augue aliquam ipsum, sit amet tincidunt velit metus in sapien. Pellentesque bibendum sapien dui, vitae tempus augue fringilla eu."
+            Auctifera__Location__r: {
+                Auctifera__Capacity__c: 6
+            },
+            Auctifera__Rental_Event__r: {
+                Auctifera__Event_Rental_Total_Amount__c: 200,
+                Auctifera__Minimum_Deposit_Amount__c: 100,
+                Auctifera__Description__c: "Maecenas volutpat ipsum ut semper eleifend. Pellentesque mattis non quam nec tincidunt. Mauris consequat luctus sapien sed facilisis. Aliquam egestas dapibus quam eget rhoncus. Fusce ut luctus nibh, ut sollicitudin dui. Integer tortor lacus, rutrum non diam ut, elementum suscipit nibh.",
+                Auctifera__Rental_Type__c: "Weddings",
+            }
         },
         {
             id: "2", 
-            capacity: 10, 
-            price: 350, 
-            rentalType: "Birthdays", 
-            minimumDeposit: 150,
-            description: "Maecenas volutpat ipsum ut semper eleifend. Pellentesque mattis non quam nec tincidunt. Mauris consequat luctus sapien sed facilisis. Aliquam egestas dapibus quam eget rhoncus. Fusce ut luctus nibh, ut sollicitudin dui. Integer tortor lacus, rutrum non diam ut, elementum suscipit nibh. Nullam bibendum dolor et urna hendrerit, vel vulputate turpis posuere. Integer ultrices odio a lacus scelerisque, nec aliquam lacus rutrum. Morbi tempus felis at tincidunt vulputate. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur porttitor, risus quis ullamcorper eleifend, eros augue aliquam ipsum, sit amet tincidunt velit metus in sapien. Pellentesque bibendum sapien dui, vitae tempus augue fringilla eu."
+            Auctifera__Location__r: {
+                Auctifera__Capacity__c: 10
+            },
+            Auctifera__Rental_Event__r: {
+                Auctifera__Event_Rental_Total_Amount__c: 100,
+                Auctifera__Minimum_Deposit_Amount__c: 50,
+                Auctifera__Description__c: "Maecenas volutpat ipsum ut semper eleifend. Pellentesque mattis non quam nec tincidunt. Mauris consequat luctus sapien sed facilisis. Aliquam egestas dapibus quam eget rhoncus. Fusce ut luctus nibh, ut sollicitudin dui. Integer tortor lacus, rutrum non diam ut, elementum suscipit nibh.",
+                Auctifera__Rental_Type__c: "Birthday Party",
+            }
         },
         {
-            id: "3",
-            capacity: 100, 
-            price: 300, 
-            rentalType: "Reception Only", 
-            minimumDeposit: 100,
-            description: "Maecenas volutpat ipsum ut semper eleifend. Pellentesque mattis non quam nec tincidunt. Mauris consequat luctus sapien sed facilisis. Aliquam egestas dapibus quam eget rhoncus. Fusce ut luctus nibh, ut sollicitudin dui. Integer tortor lacus, rutrum non diam ut, elementum suscipit nibh. Nullam bibendum dolor et urna hendrerit, vel vulputate turpis posuere. Integer ultrices odio a lacus scelerisque, nec aliquam lacus rutrum. Morbi tempus felis at tincidunt vulputate. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur porttitor, risus quis ullamcorper eleifend, eros augue aliquam ipsum, sit amet tincidunt velit metus in sapien. Pellentesque bibendum sapien dui, vitae tempus augue fringilla eu."
+            id: "3", 
+            Auctifera__Location__r: {
+                Auctifera__Capacity__c: 300
+            },
+            Auctifera__Rental_Event__r: {
+                Auctifera__Event_Rental_Total_Amount__c: 600,
+                Auctifera__Minimum_Deposit_Amount__c: 10,
+                Auctifera__Description__c: "Maecenas volutpat ipsum ut semper eleifend. Pellentesque mattis non quam nec tincidunt. Mauris consequat luctus sapien sed facilisis. Aliquam egestas dapibus quam eget rhoncus. Fusce ut luctus nibh, ut sollicitudin dui. Integer tortor lacus, rutrum non diam ut, elementum suscipit nibh.",
+                Auctifera__Rental_Type__c: "Reception Only;Birthday Party",
+            }
         },
-    ])
+    ] : [])
     return (
         <PackagesContext.Provider value={{packages, setPackages}}>
             {props.children}
