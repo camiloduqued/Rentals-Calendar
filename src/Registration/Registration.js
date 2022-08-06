@@ -71,7 +71,7 @@ const Registration = () =>{
                                     <div className="form-grid_col form-grid_col-50">
                                         <label htmlFor="firstName">* First Name</label>
                                         <input 
-                                            value={values.firstName}
+                                            defaultValue={values.firstName}
                                             className={errors.firstName ? 'error-input': ''} 
                                             type="text" name="firstName" 
                                             id="firstName" 
@@ -81,33 +81,33 @@ const Registration = () =>{
                                     <div className="form-grid_col form-grid_col-50">
                                         <label htmlFor="lastName">* Last Name</label>
                                         <input 
-                                            value={values.lastName}
+                                            defaultValue={values.lastName}
                                             className={errors.lastName ? 'error-input': ''} type="text" name="lastName" id="lastName" required onChange={handleChange}/>
                                         {errors.lastName && <h5>{errors.lastName}</h5>}
                                     </div>
                                     <div className="form-grid_col form-grid_col-100">
                                         <label htmlFor="email">* Email</label>
                                         <input 
-                                            value={values.email}
+                                            defaultValue={values.email}
                                             className={errors.email ? 'error-input': ''} type="email" name="email" id="email" required onChange={handleChange}/>
                                         {errors.email && <h5>{errors.email}</h5>}
                                     </div>
                                     <div className="form-grid_col form-grid_col-50">
                                         <label htmlFor="homePhone">Home Phone</label>
                                         <input
-                                            value={values.homePhone} 
+                                            defaultValue={values.homePhone} 
                                             type="phone" name="homePhone" id="homePhone" onChange={handleChange}/>
                                     </div>
                                     <div className="form-grid_col form-grid_col-50">
                                         <label htmlFor="mobilePhone">* Mobile Phone</label>
                                         <input 
-                                            value={values.mobilePhone}
+                                            defaultValue={values.mobilePhone}
                                             className={errors.mobilePhone ? 'error-input': ''} type="phone" name="mobilePhone" id="mobilePhone" required onChange={handleChange}/>
                                         {errors.mobilePhone && <h5>{errors.mobilePhone}</h5>}
                                     </div>
 
                                     <div className="form-grid_col form-grid_col-100">
-                                        <input type="submit" value="Go to Payment"/>
+                                        <input type="submit" defaultValue="Go to Payment"/>
                                     </div>
                                 </div>
                             </form>

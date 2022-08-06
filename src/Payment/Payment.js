@@ -1,13 +1,12 @@
-import { useContext, useState } from "react"
+import { useContext, useState, useEffect } from "react"
 import { SummaryContext } from "../Contexts/SummaryContext"
 import "./Payment.scss"
 
 import Service from '../service.lib'
 import useForm from "../Hooks/useForm"
-import Spinner from "../components/Spinner"
 
 const Payment = () =>{
-    const {summary, setSummary} = useContext(SummaryContext);
+    const {summary, setSummary, setIsFetching, setPaymentCompleted} = useContext(SummaryContext);
     const [isSameInformation, setIsSameInformation] = useState(false);
     const formatter = new Intl.DateTimeFormat('en-US', { dateStyle: 'full'});
 
@@ -31,14 +30,44 @@ const Payment = () =>{
         pay(event, deposit)
     }
 
-    const pay = (event, amountToPay)=>{
+    const pay = async (event, amount)=>{
+        setIsFetching(true);
+
         event.preventDefault();
         console.log('summary', summary);
         const body = {
-
+            rentalTemplateId: summary.item.Auctifera__Rental_Event__r.Id,
+            rentalEvent: {
+                Auctifera__Approx_number_of_people_attending__c: summary.numberOfGuests,
+                Auctifera__Rental_Type__c: summary.category,
+                Auctifera__Event_Start_Date_and_Time__c: summary.timeRange[0].toDate().getTime(),
+                Auctifera__Event_End_Date_and_Time__c: summary.timeRange[1].toDate().getTime()
+            },
+            buyerContact: {
+                FirstName: summary.contact.firstName,
+                LastName: summary.contact.lastName,
+                Email: summary.contact.email,
+                Phone: summary.contact.mobilePhone,
+                HomePhone: summary.contact.homePhone,
+            }
         }
-        return
-        const response = Service.purchase(body);
+        const service = new Service();
+        const response = await service.purchase(body);
+        if (response.statusCode === 200) {
+            const paymentBody = {
+                purchaseId: response.purchaseId,
+                amount,
+                charge: {
+                    Auctifera__POS_Purchase__c: response.purchaseId,
+                    Auctifera__Amount__c: amount
+                }
+            }
+            const paymentResponse = await service.pay(paymentBody);
+            if (paymentResponse.statusCode == 200) {
+                setPaymentCompleted(true);
+            }
+        }
+        setIsFetching(false);
     }
 
     const getContact =()=>{
@@ -114,7 +143,7 @@ const Payment = () =>{
                                 </div>
                                 {deposit && deposit > 0 ? (
                                     <div className="form-grid_col form-grid_col-50">
-                                        <button className="deposit-button" value="Reserve " onClick={(event) => payDeposit(event)}>Pay Deposit {currencyFormatter.format(deposit)}</button>
+                                        <button className="deposit-button" value="Reserve " onClick={(event) => payDeposit(event)}>Pay Deposit <b>{currencyFormatter.format(deposit)}</b></button>
                                     </div>
                                     ) : null}
                             </div>
