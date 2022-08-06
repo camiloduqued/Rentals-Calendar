@@ -4,6 +4,7 @@ import "./Payment.scss"
 
 import Service from '../service.lib'
 import useForm from "../Hooks/useForm"
+import Spinner from "../components/Spinner"
 
 const Payment = () =>{
     const {summary, setSummary} = useContext(SummaryContext);
@@ -45,7 +46,7 @@ const Payment = () =>{
         setSummary(summary)
     }
 
-    const {handleChange, values, setValues, errors, handleSubmit} = useForm(getContact)
+    const {handleChange, values, errors, handleSubmit} = useForm(getContact)
 
     return(
         <div className="payment-cmp">
@@ -61,17 +62,23 @@ const Payment = () =>{
                             <div className="form-grid">
                                 <div className="form-grid_col form-grid_col-50">
                                     <label htmlFor="firstName">* First Name</label>
-                                    <input value={isSameInformation ? summary.contact.firstName : null} type="text" name="firstName" id="firstName" required onChange={handleChange}/>
+                                    <input
+                                        className={errors.firstName ? 'error-input': ''} 
+                                        defaultValue={isSameInformation ? summary.contact.firstName : ''} type="text" name="firstName" id="firstName" required onChange={handleChange}/>
                                     {errors.firstName && <h5>{errors.firstName}</h5>}
                                 </div>
                                 <div className="form-grid_col form-grid_col-50">
                                     <label htmlFor="lastName">* Last Name</label>
-                                    <input value={isSameInformation ? summary.contact.lastName : null} type="text" name="lastName" id="lastName" required onChange={handleChange}/>
+                                    <input
+                                        className={errors.lastName ? 'error-input': ''}  
+                                        value={isSameInformation ? summary.contact.lastName : undefined} type="text" name="lastName" id="lastName" required onChange={handleChange}/>
                                     {errors.lastName && <h5>{errors.lastName}</h5>}
                                 </div>
                                 <div className="form-grid_col form-grid_col-100">
                                     <label htmlFor="email">* Email</label>
-                                    <input value={isSameInformation ? summary.contact.email : null} type="email" name="email" id="email" required onChange={handleChange}/>
+                                    <input
+                                        className={errors.email ? 'error-input': ''}  
+                                        value={isSameInformation ? summary.contact.email : null} type="email" name="email" id="email" required onChange={handleChange}/>
                                     {errors.email && <h5>{errors.email}</h5>}
                                 </div>
                                 <div className="form-grid_col form-grid_col-50">

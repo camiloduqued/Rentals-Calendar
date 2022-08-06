@@ -1,6 +1,6 @@
 
 import './Layout.scss';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Availability from "../Availability/Availability";
 import Registration from "../Registration/Registration";
 import Payment from "../Payment/Payment";
@@ -23,8 +23,8 @@ const stepsVariants = {
 
 const Layout = (props) => {
   const {step, setStep} = useContext(StepsContext)
-  const {summary, setSummary} = useContext(SummaryContext);
-  
+  const {summary, setSummary, isFetching, paymentCompleted} = useContext(SummaryContext);
+
   const renderComponents = () =>{
     switch(step){
       case "Registration":
@@ -65,11 +65,11 @@ const Layout = (props) => {
         )
     }
   }
-
+  
   return (
     <div className="layout">
-    {summary.isFetching && <Spinner/> }
-    {summary.paymentCompleted ? <Confirmation setSummary={setSummary} summary={summary}/> : (
+    {isFetching && <Spinner/> }
+    {paymentCompleted ? <Confirmation setSummary={setSummary} summary={summary}/> : (
       <>
       <StepsHeader step={step} changeStep={setStep}/>
       <AnimatePresence exitBeforeEnter>

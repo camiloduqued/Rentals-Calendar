@@ -110,7 +110,7 @@ const useForm = (callback) => {
             if(callback) callback();
 
         }else{
-            alert("There is an Error!");
+            return
         }
     }
 
