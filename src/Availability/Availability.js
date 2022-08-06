@@ -104,9 +104,9 @@ function Availability() {
                 <label className="step-title" htmlFor="categorySelector">1. Select a category according to your category</label>
                 <select id="categorySelector" onChange={(event) => onChangeCategory(event.target.value)}>
                   <option defaultChecked value=""> Select a category </option>
-                  <option value="Birthday Party" selected={summary?.category === "Birthday Party" ? true:false}>Birthday Party</option>
-                  <option value="Weddings" selected={summary?.category === "Weddings" ? true:false}>Wedding</option>
-                  <option value="Reception Only" selected={summary?.category === "Reception Only" ? true:false}>Reception Only</option>
+                  <option value="Birthday Party" defaultChecked={summary?.category === "Birthday Party" ? true:false}>Birthday Party</option>
+                  <option value="Weddings" defaultChecked={summary?.category === "Weddings" ? true:false}>Wedding</option>
+                  <option value="Reception Only" defaultChecked={summary?.category === "Reception Only" ? true:false}>Reception Only</option>
                 </select>
               </div>
               <div className='availability-cmp_calendar_wrapper'>
@@ -126,7 +126,7 @@ function Availability() {
                       onChange={(time) => handleSelectTime(time)} 
                       format="hh:mm a"
                       minuteStep={5}
-                      value={summary.timeRange}/>
+                      defaultValue={summary.timeRange}/>
                   </div>
                 </div>
 
@@ -134,7 +134,7 @@ function Availability() {
                   <div className="step-title">4. Number of guests</div>
                   <input className="guests-input" type="number" 
                     onChange={(event) => handleNumberOfGuests(event.target.value)}
-                    value={summary.numberOfGuests}/>
+                    defaultValue={summary.numberOfGuests}/>
                 </div>
               </div>
             </article>

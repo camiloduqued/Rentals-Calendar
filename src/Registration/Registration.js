@@ -1,9 +1,16 @@
-import { preventDefault } from "@fullcalendar/react";
-import { useContext, useState } from "react";
+import React, { useContext, useState} from "react";
+import { StepsContext } from "../Contexts/StepsContext";
 import { SummaryContext } from "../Contexts/SummaryContext";
 import "./Registration.scss"
+
 const Registration = () =>{
     const {summary, setSummary} = useContext(SummaryContext);
+    const {setStep} = useContext(StepsContext);
+    const currencyFormatter = Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD"
+    })
+    
     const getContact =(event)=>{
         event.preventDefault()
         const inputs = document.getElementsByClassName("contact-input");
@@ -15,6 +22,7 @@ const Registration = () =>{
         }
         summary.contact = contact;
         setSummary(summary)
+        setStep("Payment");
     }
     return(
         <div className="registration-cmp">
@@ -22,23 +30,23 @@ const Registration = () =>{
                 <div className="registration-cmp_event-col">
                     <article>
                         <div className="rental-image">
-                            <img src="https://images.pexels.com/photos/2662116/pexels-photo-2662116.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"/>
+                            <img src={summary.item.Auctifera__Rental_Event__r.Auctifera__Primary_File_Link__c} alt="Placeholder"/> 
                         </div>
                         <div className="rental-package-info">
                             <h2>Package Information</h2>
                             <div>
                                 <h4>Location</h4>
-                                <p>Tuesday April 8th, 2022 - 7:00am - 8:00am</p>
-                                <p>Capacity: 30</p>
-                                <p>Cost: $500</p>
+                                <p>{summary.dateString} | { summary.timeRange && summary.timeRange[0] && summary.timeRange[0].format('LT') } - { summary.timeRange && summary.timeRange[1] && summary.timeRange[1].format('LT') }</p>
+                                <p>Capacity: {summary.item.Auctifera__Location__r.Auctifera__Capacity__c}</p>
+                                <p>Cost: {currencyFormatter.format(summary.item.Auctifera__Rental_Event__r.Auctifera__Event_Rental_Total_Amount__c)}</p>
                             </div>
                             <div className="rental-description-disclaimers">
                                 <h3>Description</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eleifend cursus lobortis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean ullamcorper convallis eros quis volutpat. Vestibulum in diam in elit rutrum mattis luctus eu sem. Morbi semper venenatis pretium. Vestibulum eu dui tempus, commodo libero sed, vehicula ipsum. Praesent libero nibh, sodales id posuere non, lobortis sit amet arcu. Ut odio erat, suscipit a mi nec</p>
+                                <div dangerouslySetInnerHTML={{__html: summary.item.Auctifera__Rental_Event__r.Auctifera__Description__c}}/>
                                 <h3>Disclaimers</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eleifend cursus lobortis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean ullamcorper convallis eros quis volutpat. Vestibulum in diam in elit rutrum mattis luctus eu sem. Morbi semper venenatis pretium. Vestibulum eu dui tempus, commodo libero sed, vehicula ipsum. Praesent libero nibh, sodales id posuere non, lobortis sit amet arcu. Ut odio erat, suscipit a mi nec</p>
+                                <div dangerouslySetInnerHTML={{__html: summary.item.Auctifera__Rental_Event__r.Auctifera__Disclaimers__c}}/>
                                 <h3>Insurance Information</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eleifend cursus lobortis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean ullamcorper convallis eros quis volutpat. Vestibulum in diam in elit rutrum mattis luctus eu sem. Morbi semper venenatis pretium. Vestibulum eu dui tempus, commodo libero sed, vehicula ipsum. Praesent libero nibh, sodales id posuere non, lobortis sit amet arcu. Ut odio erat, suscipit a mi nec</p>
+                                <div dangerouslySetInnerHTML={{__html: summary.item.Auctifera__Rental_Event__r.Auctifera__Insurance_Information__c}}/>
                             </div>
                         </div>
                     </article>
@@ -71,7 +79,7 @@ const Registration = () =>{
                                     </div>
 
                                     <div className="form-grid_col form-grid_col-100">
-                                    <button onClick={(event) => getContact(event)} value="Go to Payment"/>
+                                        <button onClick={(event) => getContact(event)}>Go to Payment</button>
                                     </div>
                                 </div>
                             </form>
