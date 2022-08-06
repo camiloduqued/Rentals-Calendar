@@ -13,6 +13,15 @@
             position: relative;
             z-index: 2;
             max-width: 80px;
+            &.disabled{
+                pointer-events: none;
+                .circle{
+                    border-color: #DDDBDA;
+                }
+                .label{
+                    color: #dddbda;
+                }
+            }
             .circle{
                 content: "";
                 margin: 0 auto 10px;

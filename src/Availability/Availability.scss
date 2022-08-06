@@ -63,7 +63,11 @@
                 margin-top: 20px;
             }
             padding: 0 !important;
+            .list-wrapper{
+                position: relative;
+            }
             ul{
+                min-height: 400px;
                 .step-title{
                     margin-bottom: 20px
                 }
