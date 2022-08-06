@@ -26,8 +26,8 @@ export default class Service {
                 numberOfGuests,
                 category,
                 rentalDate,
-                // startTime,
-                // endTime,
+                startTime,
+                endTime,
             });
     
             this.conn.apex.get(`/Auctifera/rentals/v1?${params.toString()}`, function(error, response) {
@@ -41,13 +41,18 @@ export default class Service {
     }
 
     /**
-     * Method that gets some rentals with the filter criteria sent on the parameters
+     * Method that creates a POS Purchase with a rental template request
      */
-     async purchase(request) {
+    purchase = async (request) => this.post('/Auctifera/pos/v2/purchase', request);
 
+    /**
+     * Method that charges som rental event
+     */
+    pay = async (request) => this.post('/Auctifera/pos/v1/payment?method=online', request);
+
+    async post(url, body) {
         return new Promise((resolve, reject) => {
-    
-            this.conn.apex.get('/Auctifera/pos/v1/purchase', request, function(error, response) {
+            this.conn.apex.post(url, body, function(error, response) {
                 if (error) { 
                     console.log('error', error)
                     return reject(error)

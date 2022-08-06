@@ -76,7 +76,7 @@ function Availability() {
       if (validFilters()) 
       {
         const service = new Service();
-        const packages = await service.getRentals(parseInt(numberOfGuests), category, rentalDate.getTime(), startTime, endTime);
+        const packages = await service.getRentals(parseInt(numberOfGuests), category, rentalDate.getTime(), startTime.toDate().getTime(), endTime.toDate().getTime());
         setPackages(packages)
         setIsFetching(false);
       }
@@ -90,6 +90,7 @@ function Availability() {
     setStartTime(momentObj[0])
     setEndTime(momentObj[1])
     setSummary(summary);
+    console.log(momentObj);
   }
 
   const onChangeCategory = (category) => {

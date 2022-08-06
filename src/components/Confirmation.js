@@ -6,7 +6,7 @@ const Confirmation = (props) =>{
             </svg>
         </div>
             <div>Purchase confirmed</div>
-            <button className="continue-button" onClick={()=> props.setSummary(props.summary.paymentCompleted = false)}>Conitnue Renting</button>
+            <button className="continue-button confirmation-button" onClick={()=> props.setSummary(props.summary.paymentCompleted = false)}>Conitnue Renting</button>
         </section>
     )
 }
