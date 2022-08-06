@@ -10,11 +10,21 @@
             .rental-image{
                 height: 120px;
                 width: 100%;
+                margin-bottom: 20px;
                 img{
                     object-fit: cover;
                     height: 100%;
                     width: 100%;
                     border-radius: .65rem;
+                }
+            }
+            .rental-package-info{
+                h4{
+                    font-size: 20px;
+                    margin-top: 20px;
+                }
+                p{
+                    margin: 5px 0;
                 }
             }
             .rental-description-disclaimers{
@@ -28,6 +38,10 @@
         }
         .registration-cmp_registration-col{
             width: 52%;
+            @media screen and (max-width:400px) {
+                width: 100% !important;
+                margin-top: 20px;
+            }
             .registration-cmp_registration-wrapper{
                 @include containers;
                 padding: 1.5rem;

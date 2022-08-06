@@ -6,7 +6,8 @@ import './Availability.scss';
 import {PackagesContext} from "../Contexts/PackagesContext";
 import PackageItem from "./components/PackageItem";
 import moment from 'moment';
-import {TimePicker} from "antd"
+import {TimePicker} from "antd";
+import {motion} from "framer-motion"
 
 
 function Availability() {
@@ -65,11 +66,11 @@ function Availability() {
             </article>
             
             <article className='availability-cmp_packages-col'>
-              <ul>
+              <motion.ul>
                 {packages.map((pack, index) => {
                   return <PackageItem rentalPackage={pack} key={index}/>;
                 })}
-              </ul>
+              </motion.ul>
             </article>
         </section>
     </div>

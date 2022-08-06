@@ -8,9 +8,10 @@ const Registration = () =>{
                         <div className="rental-image">
                             <img src="https://images.pexels.com/photos/2662116/pexels-photo-2662116.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"/>
                         </div>
-                        <div>
+                        <div className="rental-package-info">
                             <h2>Package Information</h2>
                             <div>
+                                <h4>Location</h4>
                                 <p>Tuesday April 8th, 2022 - 7:00am - 8:00am</p>
                                 <p>Capacity: 30</p>
                                 <p>Cost: $500</p>
