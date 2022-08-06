@@ -7,13 +7,13 @@ import Confirmation from './components/Confirmation';
 import { useState } from 'react';
 
 const App = () => {
-  const [paymentCompleted, setPaymentCompleted] = useState(true);
+  const [paymentCompleted, setPaymentCompleted] = useState(false);
   return (
     <div className="App">
       <StepsProvider>
        <PackagesProvider>
          <SummaryProvider>
-            {paymentCompleted ? <Confirmation setPayment={setPaymentCompleted}/>:<Layout/>}
+            <Layout/>
           </SummaryProvider>
         </PackagesProvider>
       </StepsProvider>

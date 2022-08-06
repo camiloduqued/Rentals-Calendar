@@ -7,6 +7,8 @@ import Payment from "../Payment/Payment";
 import {StepsContext} from "../Contexts/StepsContext";
 import StepsHeader from "../components/StepsHeader"
 import { motion, AnimatePresence } from "framer-motion";
+import Confirmation from '../components/Confirmation';
+import { SummaryContext } from '../Contexts/SummaryContext';
 /**
  *  Global variables for animations and transitions
 */
@@ -24,6 +26,7 @@ const stepsVariants = {
 
 const Layout = (props) => {
   const {step, setStep} = useContext(StepsContext)
+  const {summary, setSummary} = useContext(SummaryContext);
   const renderComponents = () =>{
     switch(step){
       case "Registration":
@@ -67,11 +70,16 @@ const Layout = (props) => {
 
   return (
     <div className="layout">
-    <StepsHeader step={step} changeStep={setStep}/>
-    <AnimatePresence exitBeforeEnter>
-        {renderComponents()}
-    </AnimatePresence>
+    {summary.paymentCompleted ? <Confirmation setSummary={setSummary} summary={summary}/> : (
+      <>
+      <StepsHeader step={step} changeStep={setStep}/>
+      <AnimatePresence exitBeforeEnter>
+          {renderComponents()}
+      </AnimatePresence>
+      </>
+      )}
     </div>
+    
   );
 }
 
