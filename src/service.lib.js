@@ -26,11 +26,28 @@ export default class Service {
                 numberOfGuests,
                 category,
                 rentalDate,
-                startTime,
-                endTime,
+                // startTime,
+                // endTime,
             });
     
             this.conn.apex.get(`/Auctifera/rentals/v1?${params.toString()}`, function(error, response) {
+                if (error) { 
+                    console.log('error', error)
+                    return reject(error)
+                }
+                return resolve(response)
+            });
+        })
+    }
+
+    /**
+     * Method that gets some rentals with the filter criteria sent on the parameters
+     */
+     async purchase(request) {
+
+        return new Promise((resolve, reject) => {
+    
+            this.conn.apex.get('/Auctifera/pos/v1/purchase', request, function(error, response) {
                 if (error) { 
                     console.log('error', error)
                     return reject(error)
