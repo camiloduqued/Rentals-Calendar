@@ -1,6 +1,7 @@
-import React, { useContext, useState} from "react";
+import React, { useContext, useEffect} from "react";
 import { StepsContext } from "../Contexts/StepsContext";
 import { SummaryContext } from "../Contexts/SummaryContext";
+import useForm from "../Hooks/useForm";
 import "./Registration.scss"
 
 const Registration = () =>{
@@ -11,19 +12,17 @@ const Registration = () =>{
         currency: "USD"
     })
     
-    const getContact =(event)=>{
-        event.preventDefault()
-        const inputs = document.getElementsByClassName("contact-input");
-        const contact = {}
-        for(let input of inputs){
-            const name = input.getAttribute("name");
-            const value = input.value
-            contact[name] = value;
-        }
-        summary.contact = contact;
+    const getContact =()=>{
+        summary.contact = values;
         setSummary(summary)
         setStep("Payment");
     }
+    const {handleChange, values, setValues, errors, handleSubmit} = useForm(getContact)
+    useEffect(() =>{
+        if(summary && summary.contact){
+            setValues(summary.contact)
+        }
+    }, [])
     return(
         <div className="registration-cmp">
             <section className="registration-cmp_wrapper">
@@ -35,7 +34,7 @@ const Registration = () =>{
                         <div className="rental-package-info">
                             <h2>Package Information</h2>
                             <div>
-                                <h4>Location</h4>
+                                <h4>{summary.item.Auctifera__Location__r.Name}</h4>
                                 <p>{summary.dateString} | { summary.timeRange && summary.timeRange[0] && summary.timeRange[0].format('LT') } - { summary.timeRange && summary.timeRange[1] && summary.timeRange[1].format('LT') }</p>
                                 <p>Capacity: {summary.item.Auctifera__Location__r.Auctifera__Capacity__c}</p>
                                 <p>Cost: {currencyFormatter.format(summary.item.Auctifera__Rental_Event__r.Auctifera__Event_Rental_Total_Amount__c)}</p>
@@ -55,31 +54,48 @@ const Registration = () =>{
                     <div className="registration-cmp_registration-wrapper">
                         <h2>Host Information</h2>
                         <div>
-                            <form>
+                            <form onSubmit={handleSubmit}>
                                 <div className="form-grid">
                                     <div className="form-grid_col form-grid_col-50">
                                         <label htmlFor="firstName">* First Name</label>
-                                        <input className="contact-input" type="text" name="firstName" id="firstName" required/>
+                                        <input 
+                                            value={values.firstName}
+                                            className={errors.firstName ? 'error-input': ''} 
+                                            type="text" name="firstName" 
+                                            id="firstName" 
+                                            required onChange={handleChange}/>
+                                        {errors.firstName && <h5>{errors.firstName}</h5>}
                                     </div>
                                     <div className="form-grid_col form-grid_col-50">
-                                        <label htmlFor="firstName">* First Name</label>
-                                        <input className="contact-input" type="text" name="firstName" id="firstName" required/>
+                                        <label htmlFor="lastName">* Last Name</label>
+                                        <input 
+                                            value={values.lastName}
+                                            className={errors.lastName ? 'error-input': ''} type="text" name="lastName" id="lastName" required onChange={handleChange}/>
+                                        {errors.lastName && <h5>{errors.lastName}</h5>}
                                     </div>
                                     <div className="form-grid_col form-grid_col-100">
                                         <label htmlFor="email">* Email</label>
-                                        <input className="contact-input" type="email" name="email" id="email" required/>
+                                        <input 
+                                            value={values.email}
+                                            className={errors.email ? 'error-input': ''} type="email" name="email" id="email" required onChange={handleChange}/>
+                                        {errors.email && <h5>{errors.email}</h5>}
                                     </div>
                                     <div className="form-grid_col form-grid_col-50">
                                         <label htmlFor="homePhone">Home Phone</label>
-                                        <input className="contact-input" type="phone" name="homePhone" id="homePhone"/>
+                                        <input
+                                            value={values.homePhone} 
+                                            type="phone" name="homePhone" id="homePhone" onChange={handleChange}/>
                                     </div>
                                     <div className="form-grid_col form-grid_col-50">
                                         <label htmlFor="mobilePhone">* Mobile Phone</label>
-                                        <input className="contact-input" type="phone" name="mobilePhone" id="mobilePhone" required/>
+                                        <input 
+                                            value={values.mobilePhone}
+                                            className={errors.mobilePhone ? 'error-input': ''} type="phone" name="mobilePhone" id="mobilePhone" required onChange={handleChange}/>
+                                        {errors.mobilePhone && <h5>{errors.mobilePhone}</h5>}
                                     </div>
 
                                     <div className="form-grid_col form-grid_col-100">
-                                        <button onClick={(event) => getContact(event)}>Go to Payment</button>
+                                        <input type="submit" value="Go to Payment"/>
                                     </div>
                                 </div>
                             </form>
