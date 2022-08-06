@@ -97,7 +97,7 @@ $border-dark:  #C4C4C4;
         @include styled-input;
         color: #fff;
         background: #1889FF;
-        border: 0 !important;
+        border-color: #1889FF;
         transition: background-color ease-in-out 300ms;
         cursor: pointer;
         &:hover{
