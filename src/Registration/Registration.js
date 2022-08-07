@@ -1,3 +1,4 @@
+import moment from "moment";
 import React, { useContext, useEffect} from "react";
 import { StepsContext } from "../Contexts/StepsContext";
 import { SummaryContext } from "../Contexts/SummaryContext";
@@ -7,7 +8,8 @@ import "./Registration.scss"
 const Registration = () =>{
     const {summary, setSummary} = useContext(SummaryContext);
     const {setStep} = useContext(StepsContext);
-    const currencyFormatter = Intl.NumberFormat("en-US", {
+    const formatter = new Intl.DateTimeFormat('en-US', { dateStyle: 'full'});
+    const currencyFormatter = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD"
     })
@@ -35,7 +37,7 @@ const Registration = () =>{
                             <h2>Package Information</h2>
                             <div>
                                 <h4>{summary.item.Auctifera__Location__r.Name}</h4>
-                                <p>{summary.dateString} | { summary.timeRange && summary.timeRange[0] && summary.timeRange[0].format('LT') } - { summary.timeRange && summary.timeRange[1] && summary.timeRange[1].format('LT') }</p>
+                                <p>{formatter.format(moment(summary.dateString))} | { summary.timeRange && summary.timeRange[0] && summary.timeRange[0].format('LT') } - { summary.timeRange && summary.timeRange[1] && summary.timeRange[1].format('LT') }</p>
                                 <p>Capacity: {summary.item.Auctifera__Location__r.Auctifera__Capacity__c}</p>
                                 <p>Cost: {currencyFormatter.format(summary.item.Auctifera__Rental_Event__r.Auctifera__Event_Rental_Total_Amount__c)}</p>
                             </div>
@@ -107,7 +109,7 @@ const Registration = () =>{
                                     </div>
 
                                     <div className="form-grid_col form-grid_col-100">
-                                        <input type="submit" defaultValue="Go to Payment"/>
+                                        <input type="submit" value="Go to Payment"/>
                                     </div>
                                 </div>
                             </form>

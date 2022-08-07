@@ -90,7 +90,6 @@ function Availability() {
     setStartTime(momentObj[0])
     setEndTime(momentObj[1])
     setSummary(summary);
-    console.log(momentObj);
   }
 
   const onChangeCategory = (category) => {
