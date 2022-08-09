@@ -6,7 +6,7 @@ export default class Service {
 
     constructor(){
         this.conn = new window.jsforce.Connection({ 
-            accessToken : '00D1g000000QEiW!AQMAQEOt2lfq_ir61MelbCBJPWXlMo2g3fdPvaJzw34R9OXmLY96fYAU8h4L8KZ8yYpovJa16nHWNKI_vofrWYUzlXys5Evi',
+            accessToken : '00D1g000000QEiW!AQMAQNT6LxT90tW_2lA.whD4cAlWwObCSiGq2YO3E10MR13MdQGKWUbTG6AgYi0drKogJ7x_J1V.6jEJdGSlUdeM5_3msWpy',
             instanceUrl : 'https://velocity-innovation-8248-dev-ed.my.salesforce.com',
         });
     }
